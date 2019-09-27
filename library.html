@@ -13,50 +13,49 @@
         <!-- SEARCH BOX -->
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <!-- <form class="card card-sm"> -->
-                    <div class="card-body row no-gutters align-items-center">
-                        <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search...">
-                        </div>
-                        <div class="col-auto ml-2">
-                            <button class="btn btn-lg btn-success" type="submit">Search</button>
-                        </div>
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search...">
                     </div>
+                    <div class="col-auto ml-2">
+                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="album py-5">
-            <div class="container">
-                <div class="row">
-                    {{ range . }}
-                        <div class="col-md-3">
-                            <div class="card-body">
-                                <a class="card-text" href={{ . }}>{{ . }}</a>
-                            </div>
+            <div class="row">
+                {{ range . }}
+                    <div class="col-md-3">
+                        <div class="card-body">
+                            <a class="card-text" href="{{ . }}">{{ . }}</a>
                         </div>
-                    {{ end }}
-                </div>
+                    </div>
+                {{ end }}
             </div>
         </div>
     </div>
     
-
     <script>
         let anchors =  document.querySelectorAll('a');
+        let strangePreTag = document.querySelectorAll('pre');
+            console.log(strangePreTag);
         // Assign hrefs for each anchor tag
         anchors.forEach(anchor => {
             let item = anchor.href.split("/");
-            anchor.href = window.location.href + "/" + item[item.length - 1]
+            anchor.href = window.location.href + item[item.length - 1]
 
+            // TODO: Check for more file extensions
             if (anchor.innerHTML.includes(".mp4")) {
                 let oldOuterHTML = anchor.outerHTML;
-
                 anchor.outerHTML = '<i class="fa fa-play" aria-hidden="true"></i>' + oldOuterHTML;
             } else {
                 let oldOuterHTML = anchor.outerHTML;
-                
                 anchor.outerHTML = '<i class="fa fa-folder-open-o" aria-hidden="true"></i>' + oldOuterHTML;
             }
+
+            
         });
     </script>
     <script src="https://use.fontawesome.com/87489a4485.js"></script>

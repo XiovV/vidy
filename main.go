@@ -32,20 +32,22 @@ func readDir(url string) []string {
 }
 
 func servePath(w http.ResponseWriter, r *http.Request) {
+	// User shouldn't be able to look through the root of the project, that's why it redirects them to /library
 	if r.URL.String() == "/" {
 		http.Redirect(w, r, "http://localhost:8080/library/", http.StatusSeeOther)
 	} else {
 		if r.URL.String() != "/favicon.ico" {
-			extension := strings.Split(r.URL.String(), ".")
-			lastElement := extension[len(extension)-1]
-
-			if lastElement == "mp4" {
-				// TODO: Serve video file
-				fmt.Println("MP4", r.URL.String())
-				http.ServeFile(w, r, "."+r.URL.String())
+			// TODO: Check for more file extensions
+			if strings.Contains(r.URL.String(), ".mp4") {
+				withSpaceChar := strings.Replace(r.URL.String(), "%20", " ", -1)
+				fmt.Println(withSpaceChar)
+				http.ServeFile(w, r, "."+withSpaceChar)
 			} else {
 				t, _ := template.ParseFiles("library.html")
-				t.Execute(w, readDir(r.URL.String()))
+				withSpaceChar := strings.Replace(r.URL.String(), "%20", " ", -1)
+				fmt.Println(withSpaceChar)
+				http.ServeFile(w, r, "."+withSpaceChar)
+				t.Execute(w, readDir(withSpaceChar))
 			}
 		}
 	}

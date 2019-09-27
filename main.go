@@ -40,14 +40,23 @@ func servePath(w http.ResponseWriter, r *http.Request) {
 			// TODO: Check for more file extensions
 			if strings.Contains(r.URL.String(), ".mp4") {
 				withSpaceChar := strings.Replace(r.URL.String(), "%20", " ", -1)
-				fmt.Println(withSpaceChar)
+				fmt.Println("r.URL.String()", r.URL.String())
+				fmt.Println("withSpaceChar", withSpaceChar)
 				http.ServeFile(w, r, "."+withSpaceChar)
+
+				// http.ServeFile(w, r, "."+r.URL.String())
 			} else {
 				t, _ := template.ParseFiles("library.html")
 				withSpaceChar := strings.Replace(r.URL.String(), "%20", " ", -1)
-				fmt.Println(withSpaceChar)
+
+				fmt.Println("withSpaceChar", withSpaceChar)
+				fmt.Println("r.URL.String()", r.URL.String())
+
 				http.ServeFile(w, r, "."+withSpaceChar)
 				t.Execute(w, readDir(withSpaceChar))
+
+				// t, _ := template.ParseFiles("library.html")
+				// t.Execute(w, readDir(r.URL.String()))
 			}
 		}
 	}

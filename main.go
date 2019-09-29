@@ -34,8 +34,7 @@ func readDir(url string) []string {
 // This function replaces "video" with "library" and strips off a .mp4 string
 func convertURLToReadablePath(u string) string {
 	filepathSplit := strings.Split(strings.Replace(u, "video", "library", -1), "/")
-	filepathSplit = filepathSplit[:len(filepathSplit)-1]
-	filepath := strings.Replace(strings.Join(filepathSplit, "/"), "%20", " ", -1)
+	filepath := strings.Replace(strings.Join(filepathSplit[:len(filepathSplit)-1], "/"), "%20", " ", -1)
 
 	return filepath
 }

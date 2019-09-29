@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+  <title>Vidy</title>
+</head>
+<body>
+  <style>
+  .center { margin: 0 auto; display: block}
+  video { object-fit: cover;}
+  </style>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            {{ range .}}
+              <li class="nav-item"><a href="{{.}}" class="nav-link active">{{.}}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <video id='my-video' class='video-js vjs-big-play-centered center' data-setup='{ "playbackRates": [1, 1.5, 2] }'>
+      <source id="video" src='' type='video/mp4'>
+    </video>
+  </div>
+  
+  <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+
+  <script>
+    let vid = document.getElementById('video');
+    let videoURL = vid.src.replace("video", "library");
+    vid.src = videoURL;
+
+    let anchors = document.querySelectorAll('a');
+
+    anchors.forEach(anchor => {
+      if(!anchor.href.includes(".mp4")) {
+        
+        anchor.href = anchor.href.replace('video', 'library');
+      }
+
+    });
+  </script>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

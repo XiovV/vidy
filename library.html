@@ -17,17 +17,17 @@
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-    
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="card-body row no-gutters align-items-center">
                     <div class="col">
                         <div id="title-list">
-                            <input class="form-control form-control-lg form-control-borderless fuzzy-search"type="search" placeholder="Search...">
-                            <ul class="list">
+                            <input class="form-control form-control-lg form-control-borderless fuzzy-search mb-3" type="search" placeholder="Search...">
+                            <ul class="list list-group">
                                 {{ range .}}
-                                    <li><a href="{{ . }}" class="title">{{ . }}</a></li>
+                                    <li class="list-group-item"><a href="{{ . }}" class="title">{{ . }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -51,10 +51,10 @@
             // TODO: Check for more file extensions
             if (anchor.innerHTML.includes(".mp4")) {
                 let oldOuterHTML = anchor.outerHTML;
-                anchor.outerHTML = '<i class="fa fa-play" aria-hidden="true"></i>' + oldOuterHTML;
+                anchor.outerHTML = '<i class="fa fa-play mr-1" aria-hidden="true"></i>' + oldOuterHTML;
             } else {
                 let oldOuterHTML = anchor.outerHTML;
-                anchor.outerHTML = '<i class="fa fa-folder-open-o" aria-hidden="true"></i>' + oldOuterHTML;
+                anchor.outerHTML = '<i class="fa fa-folder-open-o mr-1" aria-hidden="true"></i>' + oldOuterHTML;
             }
         });
     </script>

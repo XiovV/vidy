@@ -11,7 +11,7 @@
 <body>
   <style>
   .center { margin: 0 auto; display: block}
-  video { object-fit: cover;}
+  video { object-fit: fill;}
   </style>
 
   <div class="container-fluid">
@@ -25,11 +25,12 @@
           </ul>
         </div>
       </nav>
+      <video id='my-video' class='video-js vjs-big-play-centered center' controls autoplay data-setup='{ "playbackRates": [1, 1.5, 2] }'>
+        <source id="video" src='' type='video/mp4'>
+      </video>
     </div>
 
-    <video id='my-video' class='video-js vjs-big-play-centered center' controls autoplay data-setup='{ "playbackRates": [1, 1.5, 2] }'>
-      <source id="video" src='' type='video/mp4'>
-    </video>
+    
   </div>
   
   <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>

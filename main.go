@@ -12,10 +12,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func readDir(url string) []string {
+func readDir(u string) []string {
 	dirs := []string{}
 
-	files, err := ioutil.ReadDir("./" + url)
+	files, err := ioutil.ReadDir("./" + u)
 	if err != nil {
 		fmt.Println(err)
 	}

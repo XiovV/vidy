@@ -16,21 +16,17 @@
 
   <div class="container-fluid">
     <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
-          <ul class="nav flex-column">
+          <ul class="list list-group">
             {{ range .}}
-              <li class="nav-item"><a href="{{.}}" class="nav-link active">{{.}}</a></li>
+              <li class="list-group-item"><a href="{{ . }}" class="title">{{ . }}</a></li>
             {{ end }}
           </ul>
-        </div>
-      </nav>
+      </div>
       <video id='my-video' class='video-js vjs-big-play-centered center' controls autoplay data-setup='{ "playbackRates": [1, 1.5, 2] }'>
         <source id="video" src='' type='video/mp4'>
       </video>
     </div>
-
-    
   </div>
   
   <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
@@ -43,8 +39,13 @@
     let anchors = document.querySelectorAll('a');
 
     anchors.forEach(anchor => {
-      if(!anchor.href.includes(".mp4")) {
+      if(anchor.href.includes(".mp4")) {
+        let oldOuterHTML = anchor.outerHTML;
+        anchor.outerHTML = '<i class="fa fa-play mr-1" aria-hidden="true"></i>' + oldOuterHTML;
+      } else {
         anchor.href = anchor.href.replace('video', 'library');
+        let oldOuterHTML = anchor.outerHTML;
+        anchor.outerHTML = '<i class="fa fa-folder-open-o mr-1" aria-hidden="true"></i>' + oldOuterHTML;
       }
     });
   </script>

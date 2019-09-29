@@ -31,10 +31,23 @@ func readDir(url string) []string {
 	return dirs
 }
 
+// This function replaces "video" with "library" and strips off a .mp4 string
+func convertURLToReadablePath(u string) string {
+	filepathSplit := strings.Split(strings.Replace(u, "video", "library", -1), "/")
+	filepathSplit = filepathSplit[:len(filepathSplit)-1]
+	filepath := strings.Replace(strings.Join(filepathSplit, "/"), "%20", " ", -1)
+
+	return filepath
+}
+
 func servePath(w http.ResponseWriter, r *http.Request) {
 	// User shouldn't be able to look through the root of the project, that's why it redirects them to /library
+	println("URL: ", r.URL.String())
 	if r.URL.String() == "/" {
 		http.Redirect(w, r, "http://localhost:8080/library/", http.StatusSeeOther)
+	} else if strings.Contains(r.URL.String(), "/video") == true {
+		t, _ := template.ParseFiles("video.html")
+		t.Execute(w, readDir(convertURLToReadablePath(r.URL.String())))
 	} else {
 		if r.URL.String() != "/favicon.ico" {
 			withSpaceChar := strings.Replace(r.URL.String(), "%20", " ", -1)
@@ -43,7 +56,6 @@ func servePath(w http.ResponseWriter, r *http.Request) {
 				http.ServeFile(w, r, "."+withSpaceChar)
 			} else {
 				t, _ := template.ParseFiles("library.html")
-				http.ServeFile(w, r, "."+withSpaceChar)
 				t.Execute(w, readDir(withSpaceChar))
 			}
 		}

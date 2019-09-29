@@ -12,10 +12,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type pathToServe struct {
-	Path string `json:"path"`
-}
-
 func readDir(url string) []string {
 	dirs := []string{}
 

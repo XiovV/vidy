@@ -1,6 +1,7 @@
 package main
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -18,6 +19,23 @@ func TestConvertURLToReadablePath(t *testing.T) {
 	for _, test := range tests {
 		if output := convertURLToReadablePath(test.url); output != test.expected {
 			t.Errorf("input: %v | expected %v | recieved: %v", test.url, test.expected, output)
+		}
+	}
+}
+
+func TestReadDir(t *testing.T) {
+	var tests = []struct {
+		path     string
+		expected []string
+	}{
+		{"library_test", []string{"sub dir1", "subdir1", "test.mp4"}},
+		{"library_test/subdir1", []string{"one two three.mp4", "test1.mp4", "test2.mp4"}},
+		{"library_test/sub dir1", []string{"test 1.mp4"}},
+	}
+
+	for _, test := range tests {
+		if output := readDir(test.path); !reflect.DeepEqual(output, test.expected) {
+			t.Errorf("input: %v | expected %v | recieved: %v", test.path, test.expected, output)
 		}
 	}
 }

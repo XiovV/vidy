@@ -47,6 +47,7 @@
         anchors.forEach(anchor => {
             let item = anchor.href.split("/");
             anchor.href = window.location.href + "/" + item[item.length - 1]
+
             // TODO: Check for more file extensions
             if (anchor.innerHTML.includes(".mp4")) {
                 let newHref = anchor.href.replace("library", "video");

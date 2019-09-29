@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Vidy</title>
 
     <style>
         pre {
@@ -46,13 +46,15 @@
         // Assign hrefs for each anchor tag
         anchors.forEach(anchor => {
             let item = anchor.href.split("/");
-            anchor.href = window.location.href + item[item.length - 1]
-
+            anchor.href = window.location.href + "/" + item[item.length - 1]
             // TODO: Check for more file extensions
             if (anchor.innerHTML.includes(".mp4")) {
+                let newHref = anchor.href.replace("library", "video");
+                anchor.href = newHref;
                 let oldOuterHTML = anchor.outerHTML;
                 anchor.outerHTML = '<i class="fa fa-play mr-1" aria-hidden="true"></i>' + oldOuterHTML;
             } else {
+                console.log("else statement: ", anchor.innerHTML);
                 let oldOuterHTML = anchor.outerHTML;
                 anchor.outerHTML = '<i class="fa fa-folder-open-o mr-1" aria-hidden="true"></i>' + oldOuterHTML;
             }

@@ -15,7 +15,9 @@ import (
 func readDir(u string) []string {
 	dirs := []string{}
 
-	files, err := ioutil.ReadDir("./" + u)
+	withSpaceChar := strings.Replace(u, "%20", " ", -1)
+
+	files, err := ioutil.ReadDir("./" + withSpaceChar)
 	if err != nil {
 		fmt.Println(err)
 	}

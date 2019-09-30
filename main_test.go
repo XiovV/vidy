@@ -31,6 +31,7 @@ func TestReadDir(t *testing.T) {
 		{"library_test", []string{"sub dir1", "subdir1", "test.mp4"}},
 		{"library_test/subdir1", []string{"one two three.mp4", "test1.mp4", "test2.mp4"}},
 		{"library_test/sub dir1", []string{"test 1.mp4"}},
+		{"library_test/sub%20dir1", []string{"test 1.mp4"}},
 	}
 
 	for _, test := range tests {

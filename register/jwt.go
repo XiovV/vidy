@@ -26,7 +26,7 @@ func GenerateToken(user string) string {
 	return tokenString
 }
 
-// Checks if the right user is using the right token
+// ValidateToken checks if the right user is using the right token
 func ValidateToken(tokenString, user string) bool {
 	var isValid bool
 
@@ -42,6 +42,7 @@ func ValidateToken(tokenString, user string) bool {
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		if claims["user"] == user {
 			isValid = true
+			return true
 		}
 
 		fmt.Println(claims["user"], claims["nbf"])

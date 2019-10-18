@@ -1,33 +1,64 @@
 package main
 
 import (
-	"context"
-	"fmt"
+	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 	"text/template"
 )
+
+type SuccessfulResponse struct {
+	Email string `json:email`
+	Token string `json:jwt`
+}
+
+type FailedResponse struct {
+	Error string `json:error`
+}
 
 func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	passwd := r.FormValue("password")
 
-	hashedPasswd, err := HashPassword(passwd)
-
-	client := InitConnection()
-
-	collection := client.Database(os.Getenv("DBSTR")).Collection("users")
-
-	newUser := User{email, hashedPasswd}
-
-	insertResult, err := collection.InsertOne(context.TODO(), newUser)
+	isEmailValid, err := IsEmailValid(email)
 	if err != nil {
-		log.Fatal(err)
+		response := FailedResponse{Error: err.Error()}
+		json.NewEncoder(w).Encode(response)
 	}
-	fmt.Println("Inserted a User: ", insertResult.InsertedID)
 
-	fmt.Println("tokenString", GenerateToken(newUser.Email))
+	isPasswordValid, err := IsPasswordValid(passwd)
+	if err != nil {
+		response := FailedResponse{Error: err.Error()}
+		json.NewEncoder(w).Encode(response)
+	}
+
+	if isEmailValid == true && isPasswordValid == true {
+		b := DoesUserExist(email)
+
+		if b == true {
+			response := FailedResponse{Error: "This user already exists"}
+
+			json.NewEncoder(w).Encode(response)
+		} else {
+			hashedPasswd, err := HashPassword(passwd)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			newUser := User{email, hashedPasswd}
+
+			InsertUser(newUser)
+
+			jwt := GenerateToken(newUser.Email)
+
+			response := SuccessfulResponse{Email: email, Token: jwt}
+
+			json.NewEncoder(w).Encode(response)
+		}
+	} else {
+		response := FailedResponse{Error: "Email or password are not valid"}
+		json.NewEncoder(w).Encode(response)
+	}
 }
 
 func HandleIndex(w http.ResponseWriter, r *http.Request) {

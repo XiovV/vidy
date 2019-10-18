@@ -72,7 +72,7 @@ func DoesUserExist(email string) bool {
 
 	if result.Email == email {
 		return true
-	} else {
-		return false
 	}
+	return false
+
 }

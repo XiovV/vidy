@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Started login server")
+	fmt.Println("Started register server")
 
 	r := mux.NewRouter()
 	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})

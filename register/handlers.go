@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"text/template"
@@ -56,6 +57,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 			json.NewEncoder(w).Encode(response)
 		}
 	} else {
+		fmt.Println(isEmailValid, isPasswordValid)
 		response := FailedResponse{Error: "Email or password are not valid"}
 		json.NewEncoder(w).Encode(response)
 	}

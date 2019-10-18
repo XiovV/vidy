@@ -50,7 +50,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 
 			InsertUser(newUser)
 
-			jwt := GenerateToken(newUser.Email)
+			jwt := GenerateToken(email)
 
 			response := SuccessfulResponse{Email: email, Token: jwt}
 

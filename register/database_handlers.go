@@ -18,6 +18,8 @@ var (
 )
 
 func InitConnection() *mongo.Client {
+	fmt.Println(DBUSER, DBPASS, DBSTR)
+
 	clientOptions := options.Client().ApplyURI("mongodb://" + DBUSER + ":" + DBPASS + "@ds161710.mlab.com:61710/" + DBSTR + "?retryWrites=false")
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 

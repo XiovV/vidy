@@ -39,7 +39,7 @@ func ArePasswordsTheSame(password, password_c string) (bool, error) {
 	return false, fmt.Errorf("Passwords are not the same")
 }
 
-func ReturnError(response FailedResponse, w http.ResponseWriter) {
+func ReturnError(w http.ResponseWriter, response FailedResponse) {
 	t, err := template.ParseFiles("static/index.html")
 	if err != nil {
 		log.Fatal(err)

@@ -24,19 +24,19 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	isEmailValid, err := IsEmailValid(email)
 	if err != nil {
 		response := FailedResponse{Error: err.Error()}
-		ReturnError(response, w)
+		ReturnError(w, response)
 	}
 
 	isPasswordValid, err := IsPasswordValid(passwd)
 	if err != nil {
 		response := FailedResponse{Error: err.Error()}
-		ReturnError(response, w)
+		ReturnError(w, response)
 	}
 
 	arePasswordsTheSame, err := ArePasswordsTheSame(passwd, passwd_c)
 	if err != nil {
 		response := FailedResponse{Error: err.Error()}
-		ReturnError(response, w)
+		ReturnError(w, response)
 	}
 
 	if arePasswordsTheSame == true {
@@ -46,7 +46,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 			if b == true {
 				response := FailedResponse{Error: "This user already exists"}
 
-				ReturnError(response, w)
+				ReturnError(w, response)
 			} else {
 				hashedPasswd, err := HashPassword(passwd)
 				if err != nil {

@@ -15,7 +15,6 @@ type FailedResponse struct {
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	email := r.FormValue("email")
 	passwd := r.FormValue("password")
 
@@ -25,7 +24,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		areCredsGood, err := CheckCredentials(email, passwd)
 		if err != nil {
 			response := FailedResponse{Error: "Email or Password is incorrect"}
-			json.NewEncoder(w).Encode(response)
+			ReturnError(w, response)
 		}
 
 		if areCredsGood == true {

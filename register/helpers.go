@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"html/template"
+	"log"
+	"net/http"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
@@ -26,4 +29,21 @@ func IsPasswordValid(password string) (bool, error) {
 		return false, fmt.Errorf("Password is less than 8 characters long")
 	}
 	return true, nil
+}
+
+func ArePasswordsTheSame(password, password_c string) (bool, error) {
+	if password == password_c {
+		return true, nil
+	}
+
+	return false, fmt.Errorf("Passwords are not the same")
+}
+
+func ReturnError(response FailedResponse, w http.ResponseWriter) {
+	t, err := template.ParseFiles("static/index.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	t.Execute(w, response)
 }

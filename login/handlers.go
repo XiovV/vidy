@@ -2,7 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"text/template"
 )
 
 type SuccessfulResponse struct {
@@ -34,18 +36,21 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 			json.NewEncoder(w).Encode(response)
 		} else {
 			response := FailedResponse{Error: "Email or Password is incorrect"}
-			json.NewEncoder(w).Encode(response)
+			ReturnError(w, response)
 		}
 	} else {
 		response := FailedResponse{Error: "This user doesn't exist"}
-		json.NewEncoder(w).Encode(response)
+		ReturnError(w, response)
 	}
-
 }
 
 func HandleIndex(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html")
-	http.ServeFile(w, r, "static/index.html")
+	t, err := template.ParseFiles("static/index.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	t.Execute(w, nil)
 }
 
 func ServeCSS(w http.ResponseWriter, r *http.Request) {

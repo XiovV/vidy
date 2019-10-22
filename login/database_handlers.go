@@ -11,10 +11,16 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// var (
+// 	DBUSER = os.Getenv("DBUSER")
+// 	DBPASS = os.Getenv("DBPASS")
+// 	DBSTR  = os.Getenv("DBSTR")
+// )
+
 var (
-	DBUSER = os.Getenv("DBUSER")
-	DBPASS = os.Getenv("DBPASS")
-	DBSTR  = os.Getenv("DBSTR")
+	DBUSER = "xiovv"
+	DBPASS = "gurabijas112"
+	DBSTR  = "mernstackcourse"
 )
 
 func InitConnection() *mongo.Client {

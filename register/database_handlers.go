@@ -18,6 +18,7 @@ var (
 )
 
 func InitConnection() *mongo.Client {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	fmt.Println(DBUSER, DBPASS, DBSTR)
 
 	clientOptions := options.Client().ApplyURI("mongodb://" + DBUSER + ":" + DBPASS + "@ds161710.mlab.com:61710/" + DBSTR + "?retryWrites=false")
@@ -41,7 +42,7 @@ func InitConnection() *mongo.Client {
 func InsertUser(user User) {
 	client := InitConnection()
 
-	collection := client.Database(os.Getenv("DBSTR")).Collection("users")
+	collection := client.Database(DBSTR).Collection("users")
 
 	insertResult, err := collection.InsertOne(context.TODO(), user)
 	if err != nil {
@@ -63,7 +64,7 @@ func DoesUserExist(email string) bool {
 
 	client := InitConnection()
 
-	collection := client.Database(os.Getenv("DBSTR")).Collection("users")
+	collection := client.Database(DBSTR).Collection("users")
 
 	collection.FindOne(context.TODO(), filter).Decode(&result)
 

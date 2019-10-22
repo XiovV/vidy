@@ -18,6 +18,10 @@ func main() {
 
 	r.HandleFunc("/login", HandleLogin).Methods("POST")
 	r.HandleFunc("/", HandleIndex).Methods("GET")
+	r.PathPrefix("/js").HandlerFunc(ServeJS).Methods("GET")
+	r.PathPrefix("/css").HandlerFunc(ServeCSS).Methods("GET")
+	r.PathPrefix("/fonts").HandlerFunc(ServeFonts).Methods("GET")
+	r.PathPrefix("/vendor").HandlerFunc(ServeVendor).Methods("GET")
 
 	http.ListenAndServe(":8082", handlers.CORS(headers, methods, origins)(r))
 }

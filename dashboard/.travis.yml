@@ -18,4 +18,4 @@ before_script:
   - go get github.com/gorilla/handlers
 
 script:
-  - go test -v -race
+  - go test ./...

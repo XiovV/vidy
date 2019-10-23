@@ -18,7 +18,7 @@ func TestConvertURLToReadablePath(t *testing.T) {
 
 	t.Run("Return a readable path without .mp4 at the end of the path", func(t *testing.T) {
 		for _, test := range tests {
-			if output := convertURLToReadablePath(test.url); output != test.expected {
+			if output := ConvertURLToReadablePath(test.url); output != test.expected {
 				t.Errorf("input: %v | expected %v | recieved: %v", test.url, test.expected, output)
 			}
 		}
@@ -38,7 +38,7 @@ func TestReadDir(t *testing.T) {
 
 	t.Run("Return correct files/directories from a directory", func(t *testing.T) {
 		for _, test := range tests {
-			if output := readDir(test.path); !reflect.DeepEqual(output, test.expected) {
+			if output := ReadDir(test.path); !reflect.DeepEqual(output, test.expected) {
 				t.Errorf("input: %q | expected %q | recieved: %q", test.path, test.expected, output)
 			}
 		}

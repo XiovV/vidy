@@ -1,28 +1,19 @@
 dist: xenial
-
 language: go
-
 go:
-  - 1.13.x
-
+- 1.13.x
 git:
   depth: 1
-
 install: true
-
 notifications:
   email: false
-
-
 env:
   global:
-    - DBUSER=xiovv
-    - DBSTR=mernstackcourse
-    - DBPASS=gurabijas112
-
-
+  - DEV=true
+  - secure: BCU6TYUjY0OH8kVQKqqCMgCd5wZJW0WgCXprTN5PwL7KLNIJL4c26Y1POl1TMxAzO/5ENCL0+HB44IxN3aX3BCpvrEXQslZQk4SePXdbklZZXKfsPhBSS/u2KrBJiMf/pYOClt1JqTjxLjFYfaFTwuSIbn1SD0pZ7nVofHW3+2AL2nd94VP86mwReY967pdKUzU+KOQXI6qJvO9lX+4e02DPnwiYJJZxqSAwgGGuBX8meHjyv8Ma+SD6lODrhY1MnlP+h6VQx3iT590IoJXI2CU5OyFsDjlT3+qrgNLzyoDn53q0EQcrM8gqkCBx2D78U6+PG32D2cSsGv1nMGEOhXDiW3Ti+Bn0H9+KkEfQL7epIrEgH8i5M9cFRKeXO31SCH6RfTo1qpEUakf59I7vlHIdhQkdvrLot3haiZCef1OENzvKMthL9VWkw+YMlY1pyJMPYMrv9gx30Pj6stPLJkz/AzHl7kHj1ZbmyGZyXZGUWJEpc2PbVxZzTGTGMYgBmuDEyJZ2xNi0V3nIao/LI3WSFAs5JAEM0zdeqSRLsQDq3LZrB1o0T+F1uDoKzP89FFx930S1LxliV07EDltMy6IcdQLuwf8klZ5cP7dmgw6t4Ik19A9q5L8D6Z03numjGHOSFqZlaTORbUDhMBP9928WNRwsbFUUglk0iIN4vVo=
+  - secure: PZNk2dAmwHRGHJJpfTmoqf2aG1NsDhOC9d7MmR0rlM3onvecKh3QXO91he0iAq67pfEUiLBsYLhTZ1BqAcGF1d8g+oieoOvuRkv6ca0CvQ4j7d8GJZeRw7asvlCMMxV9fqZnhiAABYGSdMW78op0Jfef/MjDkFmhsbt9FnXnyiZorG1c442CNq4PKbMhDqO2pFL1OPgWmblhnCbnxo6VwY+F6DmnbQqwUDw9ghvF8WbMYL+qazPc9lp8dan0ZM1FvuwtGF60jFu+ceJUKAshdWvTU4pgCBCtG4Tcy1CDKwFrkPUZmIPjf+xEK9B6iXPeUjyuGSUq4OvaAUOsAegvUsDOfcxKZ1RwZz5i5cJz2DfzXBspNUA0MCKYL6j+EHu+egALBXM8unxo7FUZAEAz/eu/62yMJoQlnis4b2CuPyZPDPpVWkOX/oV4n456OCxe8cD1cvRqcJ1R3dg3atjhj6Sglu9aMg1+Wb85G9hLYYeg68Oj2keSomUtFDEq1r4s4QNxjQW1pv+1DTIQSPgjjONvDMOk0Osn/yGc/M49h5o8974NpQhcqYF3WxbwnxXAhoj2/jZoVvQ8VlFMdO/ECtMI7LvEq779EEulLLjJoK9SgW9P4OShFT+gYx64XsIzbMhuJFCWTMlLFzAMzLkI3xJNcrM5lvww+uWb2JCt6m8=
+  - secure: XusFuQdQDeX0rh+mxJVo9Kh3wFVfFM5ew1X4/Vlk1rN9uE1fxHKlgxjCqBOzAsJDXHmu7UbtDsrxaLzgtapH7s0pH5s9t/rdDwEOhGRPpT6f/toIGCuSvbTZ1ouwXIxIZ9GDCKI3CrX1RjIm9s5W0+pPlPEt+Ky2GxSH75qnJ1x7IdVnWXBOb2educHIom4IkjBKglQBQoZqfwNv7bK7y4j/nvusQzNVABWlKeT7BeuGVIKsEN7fCSBJXmIKckozShxthAQX91Yr69o6JF50yixrvxRBEOp9zVSk2ajEnaCbU64B2uiWgLZi1QL59iCYhQMMdvy427NM8m+/ssAO4MMwFNARo23FwXR4fTrEj505rg7y6XVU1A0KK9i8Gds/GFsstdp05h7QeCRc4bolRlz3/WmxHeD7FE12I6UQoaaz9sH/gLMUPueF/s6kAsGgKM2ZaenGDqUrj7/rzej+9Yrp+JDvVQY9iu5jfIKsWRwk8uTnZAkdMfuPT4ybTGfV/y5bzxyzWja8EqgLyVgPAYMOpvG/1lKUDGD1B4B/A9uc/QiQpe4ZEDb18nbDYWIfOsdBSx8x09WkZqwWKy0q+dkUYlM84n98V3Az/Jw/PScGCMGh4L+006iucgHLsR0mRDxsgxrxEaSSC456E9AXm7aEPdGeH2+NUfkZ2BEXZuY=
 before_script:
-  - go get -d ./...
-
+- go get -d ./...
 script:
-  - go test -v ./...
+- go test -v ./...

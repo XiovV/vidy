@@ -15,11 +15,18 @@ var (
 	DBUSER = os.Getenv("DBUSER")
 	DBPASS = os.Getenv("DBPASS")
 	DBSTR  = os.Getenv("DBSTR")
+	DEV    = os.Getenv("DEV")
 )
 
 func InitConnection() *mongo.Client {
+	var clientOptions *options.ClientOptions
+
 	fmt.Println(DBUSER, DBPASS, DBSTR)
-	clientOptions := options.Client().ApplyURI("mongodb://" + DBUSER + ":" + DBPASS + "@ds161710.mlab.com:61710/" + DBSTR + "?retryWrites=false")
+	if DEV == "true" {
+		clientOptions = options.Client().ApplyURI("mongodb://" + DBUSER + ":" + DBPASS + "@ds251894.mlab.com:51894/" + DBSTR + "?retryWrites=false")
+	} else {
+		clientOptions = options.Client().ApplyURI("mongodb://" + DBUSER + ":" + DBPASS + "@ds161710.mlab.com:61710/" + DBSTR + "?retryWrites=false")
+	}
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {

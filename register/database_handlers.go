@@ -79,3 +79,20 @@ func DoesUserExist(email string) bool {
 	return false
 
 }
+
+func RemoveUser(email string) {
+	filter := bson.D{{"email", email}}
+
+	var result User
+
+	client := InitConnection()
+
+	collection := client.Database(DBSTR).Collection("users")
+
+	collection.FindOneAndDelete(context.TODO(), filter).Decode(&result)
+
+	err := client.Disconnect(context.TODO())
+	if err != nil {
+		log.Fatal(err)
+	}
+}

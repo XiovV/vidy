@@ -44,7 +44,7 @@ func CheckCredentials(email, password string) (bool, error) {
 
 	client := InitConnection()
 
-	collection := client.Database(os.Getenv("DBSTR")).Collection("users")
+	collection := client.Database(DBSTR).Collection("users")
 
 	collection.FindOne(context.TODO(), filter).Decode(&result)
 
@@ -68,7 +68,7 @@ func DoesUserExist(email string) bool {
 
 	client := InitConnection()
 
-	collection := client.Database(os.Getenv("DBSTR")).Collection("users")
+	collection := client.Database(DBSTR).Collection("users")
 
 	collection.FindOne(context.TODO(), filter).Decode(&result)
 

@@ -13,9 +13,13 @@ install: true
 notifications:
   email: false
 
+env:
+  - DBUSER=xiovv
+  - DBSTR=mernstackcourse
+  - DBPASS=gurabijas112
+
 before_script:
-  - go get github.com/gorilla/mux
-  - go get github.com/gorilla/handlers
+  - go get -d ./...
 
 script:
-  - go test -v ./dashboard
+  - go test -v ./...

@@ -14,6 +14,13 @@ notifications:
   email: false
 
 
+env:
+  global:
+    - DBUSER=xiovv
+    - DBSTR=mernstackcourse
+    - DBPASS=gurabijas112
+
+
 before_script:
   - go get -d ./...
 

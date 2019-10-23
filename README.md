@@ -1,3 +1,1 @@
-Minimalistic and lightweight Plex/Jellyfin/Emby alternative.
-
-All video files and directories have to be put inside a 'library' directory in the root of the project.
+[![Build Status](https://travis-ci.org/XiovV/vidy.svg?branch=master](https://travis-ci.org/XiovV/vidy)

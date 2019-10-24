@@ -35,8 +35,15 @@ go run main.go handlers.go helpers.go
 go test -v ./...
 ```
 
+## Release History
+* 0.2.0
+  * CHANGE: Login and Registration UI
+* 0.1.0
+  * ADD: Working registration and login system
 
 ## Built With
 * [Go](https://golang.org/) - Go Language
 * [Gorilla Mux](https://github.com/gorilla/mux) - Go Multiplexer
 * [Bootstrap](https://getbootstrap.com/) - CSS Framework
+* [Parason](https://colorlib.com/preview/theme/parason/index.html) - Landing Page Template
+* [Login Form 10 by Colorlib](https://colorlib.com/wp/template/login-form-v10/) - Login and Registration Template

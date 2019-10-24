@@ -14,8 +14,6 @@ Steps to get the development code running on your system:
 
 ```
 git clone https://github.com/XiovV/vidy.git
-```
-```
 cd vidy/
 ```
 
@@ -36,6 +34,6 @@ go test -v ./...
 
 
 ## Built With
-
+* [Go](https://golang.org/) - Go Language
 * [Gorilla Mux](https://github.com/gorilla/mux) - Go Multiplexer
 * [Bootstrap](https://getbootstrap.com/) - CSS Framework

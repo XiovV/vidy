@@ -25,4 +25,4 @@ before_script:
 script:
 - go test -v ./...
 after_success:
-- sshpass -p '$PRODPASS' ssh $PRODUSER@$PRODIP 'echo "SSH WORKS FINE"'
+- sshpass -p '$PRODPASS' ssh $PRODUSER@$PRODIP 'touch travisworks'

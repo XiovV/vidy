@@ -26,4 +26,4 @@ before_script:
 script:
 - go test -v ./...
 after_success:
-- sshpass -p "${PRODPASS}" ssh $PRODUSER@$PRODIP "touch travisworks"
+- sshpass -p "${PRODPASS}" ssh $PRODUSER@$PRODIP "./deploy.sh"

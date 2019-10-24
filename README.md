@@ -38,6 +38,8 @@ go test -v ./...
 ## Release History
 * 0.2.0
   * CHANGE: Login and Registration UI
+* 0.1.1
+  * FIX: Bug where a user was able to create an account with an email address that already existed
 * 0.1.0
   * ADD: Working registration and login system
 

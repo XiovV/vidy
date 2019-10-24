@@ -1,8 +1,9 @@
 dist: xenial
 language: go
 go:
-- 1.13.x
+- 1.13.3
 addons:
+  ssh_known_hosts: 146.255.142.199
   apt:
     packages:
     - sshpass

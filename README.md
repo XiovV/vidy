@@ -8,7 +8,10 @@ Vidy is a streaming service where users can upload any media they want and strea
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Running
+### Prerequisites
+* Go 1.13.3
+
+### Development Setup
 
 Steps to get the development code running on your system:
 

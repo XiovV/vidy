@@ -36,6 +36,10 @@ go test -v ./...
 ```
 
 ## Release History
+* 0.4.0
+  * ADD: Browsing and streaming media
+* 0.3.0
+  * CHANGE: Dashboard UI
 * 0.2.0
   * CHANGE: Login and Registration UI
 * 0.1.1

@@ -17,7 +17,7 @@ git clone https://github.com/XiovV/vidy.git
 cd vidy/
 ```
 
-To run the register and login service run this:
+To run the register or login service run this in their directories:
 ```
 go run main.go database_handlers.go handlers.go helpers.go jwt.go models.go
 ```
